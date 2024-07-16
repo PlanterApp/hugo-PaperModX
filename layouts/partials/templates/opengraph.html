@@ -4,7 +4,7 @@
 <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}" />
 <meta property="og:url" content="{{ .Permalink }}" />
 {{- if .Params.cover.image -}}
-  {{- if (eq .Params.cover.absolute true) }}
+  {{- if or (eq .Params.cover.absolute true) (hasPrefix .Params.cover.image "http") }}
     <meta property="og:image" content="{{ .Params.cover.image | absURL }}" />
   {{- else}}
     <meta property="og:image" content="{{ (path.Join .RelPermalink .Params.cover.image ) | absURL }}" />
